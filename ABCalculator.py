@@ -6,7 +6,7 @@ def popup_window():
     window.geometry("280x300")
     window.title("A/B results")
     
-    btnCloseWindow = tk.Button(window, text="Close", activebackground="#ACACAC", font=("Helvetica", 10, "bold"), command=window.destroy)
+    btnCloseWindow = ttk.Button(window, text="Close", style="W.TButton", command=window.destroy)
     btnCloseWindow.place(x=153, y=255, width=110, height=30)
 
 root = tk.Tk()
