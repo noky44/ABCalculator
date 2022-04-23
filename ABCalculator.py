@@ -1,11 +1,16 @@
 import tkinter as tk
 import tkinter.ttk as ttk
+from tkinter import messagebox as mb
 
 def do_processing():
     n1 = int(entry11.get())
     c1 = int(entry12.get())
     n2 = int(entry21.get())
     c2 = int(entry22.get())
+    
+    if n1<=0 or n2<=0:
+        mb.showerror(title="Error", message="Wrong number of visitors")
+        return 
     
     popup_window(n1, c1, n2, c2) 
 
