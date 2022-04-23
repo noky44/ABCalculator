@@ -1,13 +1,23 @@
 import tkinter as tk
 import tkinter.ttk as ttk
 
-def popup_window():
+def do_processing():
+    n1 = int(entry11.get())
+    c1 = int(entry12.get())
+    n2 = int(entry21.get())
+    c2 = int(entry22.get())
+    
+    popup_window(n1, c1, n2, c2) 
+
+def popup_window(n1, c1, n2, c2):
     window = tk.Toplevel()
     window.geometry("280x300")
     window.title("A/B results")
     
     btnCloseWindow = ttk.Button(window, text="Close", style="W.TButton", command=window.destroy)
     btnCloseWindow.place(x=153, y=255, width=110, height=30)
+    
+    window.focus_force()
 
 root = tk.Tk()
 root.geometry("280x300")
@@ -26,14 +36,16 @@ label1.place(x=15, y=45)
 label11 = ttk.Label(root, text="Visitors:", style="S.TLabel")
 label11.place(x=15, y=80)
 
-entry11 = ttk.Entry(root, font = ("Helvetica", 10))
+entry11 = ttk.Entry(root, font = ("Helvetica", 10), justify="center")
 entry11.place(x=105, y=80, width=140, height=23)
+entry11.insert(tk.END, "0")
 
 label12 = ttk.Label(root, text="Conversions:", style="S.TLabel")
 label12.place(x=15, y=110)
 
-entry12 = ttk.Entry(root, font = ("Helvetica", 10))
+entry12 = ttk.Entry(root, font = ("Helvetica", 10), justify="center")
 entry12.place(x=105, y=110, width=140, height=23)
+entry12.insert(tk.END, "0")
 
 label2 = tk.Label(root, text="Test group", font=("Helvetica", 12, "bold"), fg="#FB5531")
 label2.place(x=15, y=145)
@@ -41,16 +53,18 @@ label2.place(x=15, y=145)
 label21 = ttk.Label(root, text="Visitors:", style="S.TLabel")
 label21.place(x=15, y=180)
 
-entry21 = ttk.Entry(root, font = ("Helvetica", 10))
+entry21 = ttk.Entry(root, font = ("Helvetica", 10), justify="center")
 entry21.place(x=105, y=180, width=140, height=23)
+entry21.insert(tk.END, "0")
 
 label22 = ttk.Label(root, text="Conversions:", style="S.TLabel")
 label22.place(x=15, y=210)
 
-entry22 = ttk.Entry(root, font = ("Helvetica", 10))
+entry22 = ttk.Entry(root, font = ("Helvetica", 10), justify="center")
 entry22.place(x=105, y=210, width=140, height=23)
+entry22.insert(tk.END, "0")
 
-btnCalc = ttk.Button(root, text="Calculate", style="W.TButton", command=popup_window)
+btnCalc = ttk.Button(root, text="Calculate", style="W.TButton", command=do_processing)
 btnCalc.place(x=18, y=255, width=110, height=30)
 
 btnCloseRoot = ttk.Button(root, text="Close", style="W.TButton", command=root.destroy)
