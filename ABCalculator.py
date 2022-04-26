@@ -14,6 +14,11 @@ def popup_window():
     textOutput.insert(tk.END, "                                  group         group  " + os.linesep)
     textOutput.insert(tk.END, "----------------------------------------------------------" + os.linesep)
     
+    p1 = c1/n1
+    p2 = c2/n2
+    
+    textOutput.insert(tk.END, "Conversion                       " + num_percent(p1) +"     "+ num_percent(p2) + os.linesep)
+    
     btnCloseWindow = ttk.Button(window, text="Close", style="W.TButton", command=window.destroy)
     btnCloseWindow.place(x=370, y=455, width=110, height=30)
 
