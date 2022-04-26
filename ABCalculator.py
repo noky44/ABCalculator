@@ -1,10 +1,18 @@
 import tkinter as tk
 import tkinter.ttk as ttk
+import os
 
 def popup_window():
     window = tk.Toplevel()
     window.geometry("500x500")
     window.title("A/B results")
+    
+    textOutput = tk.Text(window, font=("Courier New", 10))
+    textOutput.place(x=15, y=115, width=470, height=300)
+    
+    textOutput.insert(tk.END, "                                  Control       Test   " + os.linesep)
+    textOutput.insert(tk.END, "                                  group         group  " + os.linesep)
+    textOutput.insert(tk.END, "----------------------------------------------------------" + os.linesep)
     
     btnCloseWindow = ttk.Button(window, text="Close", style="W.TButton", command=window.destroy)
     btnCloseWindow.place(x=370, y=455, width=110, height=30)
