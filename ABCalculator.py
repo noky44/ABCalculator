@@ -1,8 +1,25 @@
 import tkinter as tk
 import tkinter.ttk as ttk
+from tkinter import messagebox as mb
 import os
+import math
 
-def popup_window():
+def num_percent(num):
+    return "{:.2f}".format(num*100).rjust(10) + "%"
+
+def do_processing():
+    n1 = int(entry11.get())
+    c1 = int(entry12.get())
+    n2 = int(entry21.get())
+    c2 = int(entry22.get())
+    
+    if n1<=0 or n2<=0:
+        mb.showerror(title="Error", message="Wrong number of visitors")
+        return
+        
+    popup_window(n1, c1, n2, c2)
+
+def popup_window(n1, c1, n2, c2):
     window = tk.Toplevel()
     window.geometry("500x500")
     window.title("A/B results")
@@ -12,12 +29,17 @@ def popup_window():
     
     textOutput.insert(tk.END, "                                  Control       Test   " + os.linesep)
     textOutput.insert(tk.END, "                                  group         group  " + os.linesep)
-    textOutput.insert(tk.END, "----------------------------------------------------------" + os.linesep)
+    textOutput.insert(tk.END, "---------------------------------------------------------" + os.linesep)
     
     p1 = c1/n1
     p2 = c2/n2
+    textOutput.insert(tk.END, "Conversion                   " + num_percent(p1) +"  "+ num_percent(p2) + os.linesep)
     
-    textOutput.insert(tk.END, "Conversion                       " + num_percent(p1) +"     "+ num_percent(p2) + os.linesep)
+    sigma1 = math.sqrt(p1*(1-p1)/n1)
+    sigma2 = math.sqrt(p2*(1-p2)/n2)
+    textOutput.insert(tk.END, "Standard deviation           " + num_percent(sigma1) +"  "+ num_percent(sigma2) + os.linesep)
+    
+    textOutput.insert(tk.END, "---------------------------------------------------------" + os.linesep)
     
     btnCloseWindow = ttk.Button(window, text="Close", style="W.TButton", command=window.destroy)
     btnCloseWindow.place(x=370, y=455, width=110, height=30)
@@ -67,7 +89,7 @@ entry22 = ttk.Entry(root, font = ("Helvetica", 10), justify="center")
 entry22.place(x=105, y=210, width=140, height=23)
 entry22.insert(tk.END, "18")
 
-btnCalc = ttk.Button(root, text="Calculate", style="W.TButton", command=popup_window)
+btnCalc = ttk.Button(root, text="Calculate", style="W.TButton", command=do_processing)
 btnCalc.place(x=18, y=255, width=110, height=30)
 
 btnCloseRoot = ttk.Button(root, text="Close", style="W.TButton", command=root.destroy)
